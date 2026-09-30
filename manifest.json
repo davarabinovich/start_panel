@@ -1,0 +1,45 @@
+{
+    "manifest_version": 3,
+    "name": "Start Panel",
+    "version": "1.0.0",
+    "description": "A spacious, responsive speed dial with custom shortcuts and folders. No fixed column limit.",
+    "permissions": ["storage", "tabs"],
+    "background":
+    {
+        "service_worker": "src/background.js",
+        "type": "module"
+    },
+    "action":
+    {
+        "default_title": "Open Start Panel",
+        "default_icon":
+        {
+            "16": "assets/icon_16.png",
+            "32": "assets/icon_32.png"
+        }
+    },
+    "icons":
+    {
+        "16": "assets/icon_16.png",
+        "32": "assets/icon_32.png",
+        "48": "assets/icon_48.png",
+        "128": "assets/icon_128.png"
+    },
+    "options_page": "src/start_page.html",
+    "chrome_url_overrides":
+    {
+        "newtab": "src/start_page.html"
+    },
+    "commands":
+    {
+        "open_panel":
+        {
+            "suggested_key": { "default": "Alt+Shift+S" },
+            "description": "Open Start Panel"
+        }
+    },
+    "content_security_policy":
+    {
+        "extension_pages": "default-src 'self'; script-src 'self'; object-src 'none'; style-src 'self'; img-src 'self' data:; connect-src 'none'; base-uri 'none'; form-action 'none'"
+    }
+}

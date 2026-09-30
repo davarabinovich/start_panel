@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en" data-theme="light" data-size="comfortable">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <title>Start Panel</title>
+    <link rel="icon" href="../assets/icon_32.png">
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="main.js"></script>
+</head>
+<body>
+    <header class="top_bar">
+        <a class="brand" href="start_page.html" aria-label="Start Panel home">
+            <img src="../assets/icon_48.png" alt="" width="34" height="34">
+            <span>Start Panel<span class="brand_dot">.</span></span>
+        </a>
+        <div class="header_actions">
+            <span class="local_badge"><span></span> Yours, locally.</span>
+            <button id="settingsButton" class="button secondary" type="button"><span data-icon="settings"></span> Customize</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="intro" aria-labelledby="pageTitle">
+            <div>
+                <p class="eyebrow">A LITTLE SPACE FOR YOUR EVERYDAY</p>
+                <h1 id="pageTitle">Good things start here<span>.</span></h1>
+                <p class="intro_text">Your favorite corners of the web, all in one place.</p>
+            </div>
+            <label class="search_box">
+                <span data-icon="search"></span>
+                <input id="searchInput" type="search" placeholder="Find a shortcut…" aria-label="Find a shortcut" autocomplete="off">
+                <kbd>/</kbd>
+            </label>
+        </section>
+
+        <section aria-labelledby="sectionTitle">
+            <div class="section_bar">
+                <div class="section_heading">
+                    <button id="backButton" type="button" class="icon_button" aria-label="Back to all shortcuts" hidden><span data-icon="back"></span></button>
+                    <h2 id="sectionTitle">Speed dial</h2>
+                    <span id="itemCount" class="count_badge">0</span>
+                </div>
+                <div class="section_actions">
+                    <button id="organizeButton" type="button" class="button quiet" aria-pressed="false"><span data-icon="select"></span> Organize</button>
+                    <button id="folderButton" type="button" class="button secondary"><span data-icon="folder"></span> New folder</button>
+                    <button id="addButton" type="button" class="button primary"><span data-icon="plus"></span> Add shortcut</button>
+                </div>
+            </div>
+            <div id="selectionBar" class="selection_bar" hidden>
+                <span id="selectionCount">0 selected</span>
+                <button id="groupButton" class="button secondary" type="button">Create folder from selection</button>
+                <button id="moveButton" class="button secondary" type="button">Move to…</button>
+                <button id="deleteSelectionButton" class="button danger_quiet" type="button">Delete</button>
+                <button id="finishButton" class="button quiet" type="button">Done</button>
+            </div>
+            <p id="emptyMessage" class="empty_message" hidden></p>
+            <div id="tileGrid" class="tile_grid" aria-label="Shortcuts"></div>
+        </section>
+        <footer><span>More room for your world.</span><span>Drag to reorder <span aria-hidden="true">·</span> Organize to group</span></footer>
+    </main>
+
+    <dialog id="editorDialog" aria-labelledby="editorTitle">
+        <form id="editorForm">
+            <div class="dialog_heading"><h2 id="editorTitle">Add shortcut</h2><button class="icon_button" type="button" data-close aria-label="Close"><span data-icon="close"></span></button></div>
+            <p id="editorDescription" class="muted">A familiar name. A favorite place.</p>
+            <label class="field">Name<input id="nameInput" name="name" required maxlength="80" autocomplete="off" placeholder="e.g. My workspace"></label>
+            <label id="urlField" class="field">Website address<input id="urlInput" name="url" type="text" inputmode="url" autocomplete="off" placeholder="https://example.com" maxlength="8192"></label>
+            <label id="destinationField" class="field">Location<select id="destinationInput"></select></label>
+            <fieldset class="color_field"><legend>Tile color</legend><div id="colorOptions" class="color_options"></div></fieldset>
+            <p id="editorError" class="form_error" role="alert"></p>
+            <div class="dialog_actions"><button type="button" class="button secondary" data-close>Cancel</button><button id="saveButton" type="submit" class="button primary">Save shortcut</button></div>
+        </form>
+    </dialog>
+
+    <dialog id="settingsDialog" aria-labelledby="settingsTitle">
+        <form id="settingsForm">
+            <div class="dialog_heading"><h2 id="settingsTitle">Make it yours</h2><button class="icon_button" type="button" data-close aria-label="Close"><span data-icon="close"></span></button></div>
+            <p class="muted">A few preferences. A space that feels like you.</p>
+            <div class="field_pair">
+                <label class="field"><span>Appearance</span><select id="themeInput" aria-label="Appearance"><option value="light">Light</option><option value="dark">Dark</option><option value="system">Follow system</option></select></label>
+                <label class="field"><span>Tile size</span><select id="sizeInput" aria-label="Tile size"><option value="compact">Compact</option><option value="comfortable">Comfortable</option><option value="large">Large</option></select></label>
+            </div>
+            <label class="check_field"><input id="newTabInput" type="checkbox"><span>Open shortcuts in a new tab</span></label>
+            <label class="check_field"><input id="redirectInput" type="checkbox"><span>Open Start Panel on Opera’s start page</span></label>
+            <p class="field_hint">Availability depends on your Opera version. The toolbar button and Alt+Shift+S always provide another way in.</p>
+            <div class="backup_section">
+                <h3>Keep a copy</h3><p class="muted">Back up your shortcuts, folders, and preferences.</p>
+                <div class="backup_actions"><button id="exportButton" type="button" class="button secondary"><span data-icon="download"></span> Export backup</button><button id="importButton" type="button" class="button secondary">Import backup</button></div>
+                <input id="importInput" type="file" accept="application/json,.json" hidden>
+            </div>
+            <p id="settingsError" class="form_error" role="alert"></p>
+            <div class="dialog_actions"><button class="button secondary" type="button" data-close>Cancel</button><button id="saveSettingsButton" class="button primary" type="submit">Save preferences</button></div>
+        </form>
+    </dialog>
+
+    <dialog id="moveDialog" aria-labelledby="moveTitle">
+        <form id="moveForm">
+            <div class="dialog_heading"><h2 id="moveTitle">Move shortcuts</h2><button class="icon_button" type="button" data-close aria-label="Close"><span data-icon="close"></span></button></div>
+            <label class="field">Destination<select id="moveDestinationInput"></select></label>
+            <p id="moveError" class="form_error" role="alert"></p>
+            <div class="dialog_actions"><button class="button secondary" type="button" data-close>Cancel</button><button class="button primary" type="submit">Move shortcuts</button></div>
+        </form>
+    </dialog>
+
+    <dialog id="confirmDialog" aria-labelledby="confirmTitle">
+        <form id="confirmForm">
+            <div class="dialog_heading"><h2 id="confirmTitle">Delete shortcut?</h2><button class="icon_button" type="button" data-close aria-label="Close"><span data-icon="close"></span></button></div>
+            <p id="confirmDescription" class="muted"></p>
+            <p id="confirmError" class="form_error" role="alert"></p>
+            <div class="dialog_actions"><button class="button secondary" type="button" data-close>Cancel</button><button id="confirmButton" class="button danger" type="submit">Delete</button></div>
+        </form>
+    </dialog>
+
+    <div id="tileMenu" class="tile_menu" popover aria-label="Tile actions"></div>
+    <div id="toast" class="toast" role="status" hidden></div>
+    <div id="loadError" class="load_error" role="alert" hidden></div>
+</body>
+</html>

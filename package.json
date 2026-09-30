@@ -1,0 +1,12 @@
+{
+    "name": "start_panel",
+    "version": "1.0.0",
+    "private": true,
+    "type": "module",
+    "scripts":
+    {
+        "test": "node --test src/tests/model_test.js src/tests/background_test.js",
+        "testBrowser": "node src/tests/browser_test.js"
+    },
+    "engines": { "node": ">=22" }
+}
