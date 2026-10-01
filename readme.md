@@ -2,6 +2,20 @@
 
 A lightweight Opera extension with a configurable speed dial, folders, and a grid that uses the full browser width. Built with native JavaScript, HTML, CSS, and Manifest V3. No build step or runtime dependencies.
 
+## Used Tools and Versions
+
+To run:
+- JavaScript ES2022
+- HTML5
+- CSS
+- Opera extension standard: Manifest V3
+- Windows 11
+
+Also to test:
+- Node.js 24.19.0
+- Playwright 1.62.1
+- Test browser: Chromium 151.0.7922.34
+
 ## Install
 
 1. Open `opera://extensions` in Opera.

@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "Start Panel",
-    "version": "1.0.0",
+    "version": "0.1",
     "description": "A spacious, responsive speed dial with custom shortcuts and folders. No fixed column limit.",
     "permissions": ["storage", "tabs"],
     "background":
